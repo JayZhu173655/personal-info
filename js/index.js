@@ -23,19 +23,29 @@ $( function(){
     // 获取了解更多按钮
     const $learnMore = $('#cover .cover-learn-more');
     // 获取每一个部分的高度可能有些有内边距，导致还需要获取内边距，所以可以获取每部分到顶部距离
-    const coverToTop = $('#cover').offset().top;
-    const basicInfoToTop = $('#basic-info').offset().top;
-    const skillToTop = $('#skill').offset().top;
-    const lifeExperienceToTop = $('#life-experience').offset().top;
-    const projectExperienceToTop = $('#project-experience').offset().top;
-    const selfEvaluationToTop = $('#self-evaluation').offset().top;
-    const contactInfoToTop = $('#contact-info').offset().top;
+    let coverToTop = $('#cover').offset().top;
+    let basicInfoToTop = $('#basic-info').offset().top;
+    let skillToTop = $('#skill').offset().top;
+    let lifeExperienceToTop = $('#life-experience').offset().top;
+    let projectExperienceToTop = $('#project-experience').offset().top;
+    let selfEvaluationToTop = $('#self-evaluation').offset().top;
+    let contactInfoToTop = $('#contact-info').offset().top;
     // 获取所有导航项
     const $navItems = $('#header #hmlight-nav ul li');
     // 记录当前轮播的序号
     let carouselIndex = 0;
 
-
+    // 窗口大小改变，改变各部分到顶部的距离
+    $(window).on('resize', function(){
+        // 当窗口大小改变重新获取每部分到顶部距离
+        coverToTop = $('#cover').offset().top;
+        basicInfoToTop = $('#basic-info').offset().top;
+        skillToTop = $('#skill').offset().top;
+        lifeExperienceToTop = $('#life-experience').offset().top;
+        projectExperienceToTop = $('#project-experience').offset().top;
+        selfEvaluationToTop = $('#self-evaluation').offset().top;
+        contactInfoToTop = $('#contact-info').offset().top;
+    });
     // 滚动页面，导航添加背景 固定在顶部
     $(window).scroll(function(){
         let offsetTopInstance =  $('.navbar').offset().top;
@@ -55,7 +65,7 @@ $( function(){
     // 点击logo图标滚轮回到顶部
 
     $headerlogo.on('click', function(){
-        $('html, body').animate({scrollTop: 0}, 1000);
+        $('html, body').animate({scrollTop: coverToTop}, 1000);
     });
 
 
